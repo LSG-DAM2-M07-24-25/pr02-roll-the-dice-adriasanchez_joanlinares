@@ -47,6 +47,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DiceGame() {
+    var dice1 by remember { mutableIntStateOf(1) }
+    var dice2 by remember { mutableIntStateOf(1) }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -62,17 +64,20 @@ fun DiceGame() {
             horizontalArrangement = Arrangement.spacedBy(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Dicebtn()
-            Dicebtn()
+            Dicebtn(dice = dice1, changeImage = {
+                dice1 = Random.nextInt(1, 7)
+            })
+            Dicebtn(dice = dice2, changeImage = {
+                dice2 = Random.nextInt(1, 7)
+            })
         }
     }
 }
 
 @Composable
-fun Dicebtn() {
-    var diceValue by remember { mutableIntStateOf(1) }
+fun Dicebtn(dice: Int, changeImage: () -> Unit) {
     Image(
-        painter = painterResource(id = when(diceValue) {
+        painter = painterResource(id = when(dice) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3
@@ -84,7 +89,7 @@ fun Dicebtn() {
         modifier = Modifier
             .size(200.dp)
             .clickable {
-                diceValue = Random.nextInt(1, 7)
+                changeImage()
             }
     )
 }
