@@ -89,8 +89,10 @@ fun DiceGame() {
                     dice1 = Random.nextInt(1, 7)
                     dice2 = Random.nextInt(1, 7)
                     if (dice1 == dice2 && dice1 == 6) {
+                        Toast.makeText(context, "MEGA JACKPOT!!!", Toast.LENGTH_SHORT).show()
                         credits += 10
                     } else if (dice1 == dice2) {
+                        Toast.makeText(context, "JACKPOT!", Toast.LENGTH_SHORT).show()
                         credits += 5
                     }
                 } else {
@@ -137,8 +139,10 @@ fun DiceGame() {
                         credits -= 1
                         dice2 = Random.nextInt(1, 7)
                         if (dice1 == dice2 && dice1 == 6) {
+                            Toast.makeText(context, "MEGA JACKPOT!!!", Toast.LENGTH_SHORT).show()
                             credits += 10
                         } else if (dice1 == dice2) {
+                            Toast.makeText(context, "JACKPOT!", Toast.LENGTH_SHORT).show()
                             credits += 5
                         }
                     } else {
